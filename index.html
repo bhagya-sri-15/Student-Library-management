@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Library Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">📚 Library Hub</h1>
+                <p class="tagline">Student Library Management System</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <button class="btn-primary" data-tab="dashboard">Dashboard</button>
+                <button class="btn-secondary" data-tab="add-book">Add Book</button>
+                <button class="btn-secondary" data-tab="my-books">My Books</button>
+            </div>
+            <div class="user-info">
+                <input type="text" id="studentName" class="student-input" placeholder="Enter your name">
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Dashboard Tab -->
+        <section id="dashboard" class="tab-content active">
+            <div class="dashboard-header">
+                <h2>Available Books</h2>
+                <div class="search-container">
+                    <input type="text" id="searchInput" class="search-box" placeholder="Search by title or author...">
+                    <select id="filterCategory" class="filter-select">
+                        <option value="">All Categories</option>
+                        <option value="Fiction">Fiction</option>
+                        <option value="Science">Science</option>
+                        <option value="Technology">Technology</option>
+                        <option value="History">History</option>
+                        <option value="Self-Help">Self-Help</option>
+                        <option value="Educational">Educational</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="booksContainer" class="books-grid">
+                <!-- Books will be loaded here dynamically -->
+            </div>
+        </section>
+
+        <!-- Add Book Tab -->
+        <section id="add-book" class="tab-content">
+            <div class="form-container">
+                <h2>Add New Book</h2>
+                <form id="addBookForm">
+                    <div class="form-group">
+                        <label for="bookTitle">Book Title</label>
+                        <input type="text" id="bookTitle" placeholder="Enter book title" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bookAuthor">Author Name</label>
+                        <input type="text" id="bookAuthor" placeholder="Enter author name" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bookISBN">ISBN</label>
+                            <input type="text" id="bookISBN" placeholder="Enter ISBN" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bookCategory">Category</label>
+                            <select id="bookCategory" required>
+                                <option value="">Select Category</option>
+                                <option value="Fiction">Fiction</option>
+                                <option value="Science">Science</option>
+                                <option value="Technology">Technology</option>
+                                <option value="History">History</option>
+                                <option value="Self-Help">Self-Help</option>
+                                <option value="Educational">Educational</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bookQuantity">Quantity</label>
+                            <input type="number" id="bookQuantity" placeholder="Enter quantity" min="1" value="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="bookYear">Publication Year</label>
+                            <input type="number" id="bookYear" placeholder="Enter year" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bookDescription">Description</label>
+                        <textarea id="bookDescription" placeholder="Enter book description" rows="3"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary btn-large">Add Book</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- My Books Tab -->
+        <section id="my-books" class="tab-content">
+            <div class="dashboard-header">
+                <h2>My Borrowed Books</h2>
+            </div>
+
+            <div id="myBooksContainer" class="books-grid">
+                <!-- Borrowed books will be loaded here -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Book Details Modal -->
+    <div id="bookModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-body">
+                <div class="modal-book-cover">
+                    <div class="book-placeholder">📖</div>
+                </div>
+                <div class="modal-book-details">
+                    <h2 id="modalTitle"></h2>
+                    <p><strong>Author:</strong> <span id="modalAuthor"></span></p>
+                    <p><strong>ISBN:</strong> <span id="modalISBN"></span></p>
+                    <p><strong>Category:</strong> <span id="modalCategory"></span></p>
+                    <p><strong>Published:</strong> <span id="modalYear"></span></p>
+                    <p><strong>Available:</strong> <span id="modalAvailable"></span></p>
+                    <p><strong>Description:</strong></p>
+                    <p id="modalDescription" class="description"></p>
+                    <div class="modal-actions">
+                        <button id="borrowBtn" class="btn-primary">Borrow Book</button>
+                        <button id="returnBtn" class="btn-secondary" style="display:none;">Return Book</button>
+                        <button id="deleteBtn" class="btn-danger">Delete</button>
+                        <button class="btn-secondary modal-close-btn">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="message message-success">
+        <span id="messageText"></span>
+    </div>
+
+    <!-- Error Message -->
+    <div id="errorMessage" class="message message-error">
+        <span id="errorText"></span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
